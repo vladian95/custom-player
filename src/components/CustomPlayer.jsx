@@ -1,9 +1,12 @@
 import React, { useState, useRef } from 'react';
-import videovlad from '../assets/vladvideo.mp4';
+import video from '../assets/vladvideo.mp4';
+import play from '../assets/play.svg';
+import pause from '../assets/pause.svg';
 
 function CustomPlayer() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
+  const [volume, setVolume] = useState(1);
   const videoRef = useRef(null);
 
   const handlePlayPauseClick = () => {
@@ -32,17 +35,28 @@ function CustomPlayer() {
     videoRef.current.currentTime = videoDuration * progressPercentage;
   };
 
+  const handleVolumeChange = (e) => {
+    setVolume(e.target.value);
+    videoRef.current.volume = e.target.value;
+  };
+
   return (
     <div className="custom-player">
       <video
-        src={videovlad}
+        className="video-player"
+        src={video}
         ref={videoRef}
         onTimeUpdate={handleTimeUpdate}
         onError={(e) => console.log('Error loading video:', e)}
       />
+
       <div className="custom-player-controls">
-        <button onClick={handlePlayPauseClick}>
-          {isPlaying ? 'Pause' : 'Play'}
+        <button className="btn-video" onClick={handlePlayPauseClick}>
+          {isPlaying ? (
+            <img className="btn-pause" src={pause} alt="Pause" />
+          ) : (
+            <img className="btn-play" src={play} alt="Play" />
+          )}
         </button>
         <div className="custom-player-progress" onClick={handleProgressClick}>
           <div
@@ -52,6 +66,16 @@ function CustomPlayer() {
                 ? `${(currentTime / videoRef.current.duration) * 100}%`
                 : '0%',
             }}
+          />
+        </div>
+        <div className="custom-player-volume">
+          <input
+            type="range"
+            min="0"
+            max="1"
+            step="0.01"
+            value={volume}
+            onChange={handleVolumeChange}
           />
         </div>
       </div>

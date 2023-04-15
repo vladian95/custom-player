@@ -1,3 +1,67 @@
 .App {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.custom-player {
+  width: 600px;
+  background-position: contain;
+  position: relative;
+}
+.custom-player:hover .custom-player-progress {
+  display: block;
+}
+
+.custom-player:hover .btn-video {
+  display: block;
+}
+
+.custom-player:hover .custom-player-volume {
+  display: block;
+}
+
+.video-player {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+}
+.btn-video {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
+img {
+  height: 40px;
+  width: 40px;
+}
+.custom-player-progress {
+  display: none;
+  height: 40px;
+  width: 100%;
+  background-color: red;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  transition: all 2s ease-in;
+  cursor: pointer;
+  border-radius: 20px;
+}
+.custom-player-progress-bar {
+  height: 100%;
+  width: 20px;
+  background-color: aqua;
+  border-radius: 20px;
+}
+.custom-player-volume {
+  position: absolute;
+  bottom: 200px;
+  left: 0;
+  transform: rotate(270deg);
+  cursor: pointer;
+  display: none;
 }
