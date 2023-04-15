@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import videovlad from '../assets/vladvideo.mp4';
 
 function CustomPlayer() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -34,7 +35,7 @@ function CustomPlayer() {
   return (
     <div className="custom-player">
       <video
-        src="https://www.youtube.com/watch?v=wHYu-SfQD5o"
+        src={videovlad}
         ref={videoRef}
         onTimeUpdate={handleTimeUpdate}
         onError={(e) => console.log('Error loading video:', e)}
